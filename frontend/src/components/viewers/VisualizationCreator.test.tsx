@@ -343,17 +343,13 @@ describe('VisualizationCreator', () => {
     expect(container).toMatchInlineSnapshot(`
       <div>
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-text"
+          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1e6y48t-MuiButtonBase-root-MuiButton-root"
           tabindex="0"
           type="button"
         >
+          create visualizations manually
           <span
-            class="MuiButton-label"
-          >
-            create visualizations manually
-          </span>
-          <span
-            class="MuiTouchRipple-root"
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
           />
         </button>
       </div>

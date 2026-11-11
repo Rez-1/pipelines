@@ -18,7 +18,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import CloseIcon from '@mui/icons-material/Close';
-import { Resizable } from 're-resizable';
+import { Resizable, ResizableProps } from 're-resizable';
 import Slide from '@mui/material/Slide';
 import { color, commonCss, zIndex } from '../Css';
 import { stylesheet } from 'typestyle';
@@ -48,6 +48,21 @@ const css = stylesheet({
   },
 });
 
+// v5 transitions need a ref to the child's DOM node; Resizable's ref is its class instance.
+const ResizableWithRef = React.forwardRef<HTMLElement, ResizableProps>((props, ref) => (
+  <Resizable
+    {...props}
+    ref={instance => {
+      const node = instance ? instance.resizable : null;
+      if (typeof ref === 'function') {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+    }}
+  />
+));
+
 interface SidePanelProps {
   isBusy?: boolean;
   isOpen: boolean;
@@ -75,7 +90,7 @@ class SidePanel extends React.Component<SidePanelProps> {
     const { isBusy, isOpen, onClose, title, defaultWidth } = this.props;
     return (
       <Slide in={isOpen} direction='left'>
-        <Resizable
+        <ResizableWithRef
           className={css.sidepane}
           defaultSize={{ width: defaultWidth ? defaultWidth : '70%' }}
           maxWidth='90%'
@@ -108,7 +123,7 @@ class SidePanel extends React.Component<SidePanelProps> {
               </div>
             </div>
           )}
-        </Resizable>
+        </ResizableWithRef>
       </Slide>
     );
   }

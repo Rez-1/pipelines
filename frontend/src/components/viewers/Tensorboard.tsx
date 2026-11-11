@@ -25,7 +25,7 @@ import Input from '@mui/material/Input';
 import MenuItem from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -121,7 +121,7 @@ class TensorboardViewer extends Viewer<TensorboardViewerProps, TensorboardViewer
     clearInterval(this.timerID);
   }
 
-  public handleImageSelect = (e: React.ChangeEvent<{ name?: string; value: unknown }>): void => {
+  public handleImageSelect = (e: SelectChangeEvent<string>): void => {
     if (typeof e.target.value !== 'string') {
       throw new Error('Invalid event value type, expected string');
     }
