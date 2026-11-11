@@ -17,11 +17,11 @@
 import * as React from 'react';
 import 'ace-builds/src-noconflict/ace';
 import BusyButton from '../../atoms/BusyButton';
-import FormControl from '@material-ui/core/FormControl';
+import FormControl from '@mui/material/FormControl';
 import Input from '../../atoms/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import Editor from '../Editor';
 import Viewer, { ViewerConfig } from './Viewer';
 import { ApiVisualizationType } from '../../apis/visualization';
@@ -29,7 +29,7 @@ import 'ace-builds/src-noconflict/ext-language_tools';
 import 'ace-builds/src-noconflict/mode-json';
 import 'ace-builds/src-noconflict/mode-python';
 import 'ace-builds/src-noconflict/theme-github';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 
 export interface VisualizationCreatorConfig extends ViewerConfig {
   allowCustomVisualizations?: boolean;
@@ -103,9 +103,10 @@ class VisualizationCreator extends Viewer<VisualizationCreatorProps, Visualizati
           width: this.props.maxWidth || 600,
         }}
       >
-        <FormControl style={{ width: '100%' }}>
+        <FormControl variant='standard' style={{ width: '100%' }}>
           <InputLabel htmlFor='visualization-type-selector'>Type</InputLabel>
           <Select
+            variant='standard'
             value={selectedType || ''}
             inputProps={{
               id: 'visualization-type-selector',

@@ -16,21 +16,21 @@
 
 import * as React from 'react';
 import BusyButton from '../../atoms/BusyButton';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import Viewer, { ViewerConfig } from './Viewer';
 import { Apis } from '../../lib/Apis';
 import { commonCss, padding, color } from '../../Css';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import InputLabel from '@mui/material/InputLabel';
+import Input from '@mui/material/Input';
+import MenuItem from '@mui/material/MenuItem';
+import ListSubheader from '@mui/material/ListSubheader';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import { classes, stylesheet } from 'typestyle';
 
 export const css = stylesheet({
@@ -121,7 +121,7 @@ class TensorboardViewer extends Viewer<TensorboardViewerProps, TensorboardViewer
     clearInterval(this.timerID);
   }
 
-  public handleImageSelect = (e: React.ChangeEvent<{ name?: string; value: unknown }>): void => {
+  public handleImageSelect = (e: SelectChangeEvent<string>): void => {
     if (typeof e.target.value !== 'string') {
       throw new Error('Invalid event value type, expected string');
     }
@@ -166,7 +166,6 @@ class TensorboardViewer extends Viewer<TensorboardViewerProps, TensorboardViewer
                 id={'delete'}
                 title={`stop tensorboard and delete its instance`}
                 onClick={this._handleDeleteOpen}
-                color={'default'}
               >
                 Stop Tensorboard
               </Button>
@@ -208,9 +207,10 @@ class TensorboardViewer extends Viewer<TensorboardViewerProps, TensorboardViewer
         {!this.state.podAddress && (
           <div>
             <div className={padding(30, 'b')}>
-              <FormControl className={css.formControl}>
+              <FormControl variant='standard' className={css.formControl}>
                 <InputLabel htmlFor='viewer-tb-image-select'>TF Image</InputLabel>
                 <Select
+                  variant='standard'
                   className={css.select}
                   value={this.state.tfImage}
                   input={<Input id='viewer-tb-image-select' />}
