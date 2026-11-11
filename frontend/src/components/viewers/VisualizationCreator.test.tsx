@@ -20,7 +20,7 @@ import { vi } from 'vitest';
 import { PlotType } from './Viewer';
 import VisualizationCreator, { VisualizationCreatorConfig } from './VisualizationCreator';
 import { ApiVisualizationType } from '../../apis/visualization';
-import Select from '@material-ui/core/Select';
+import Select from '@mui/material/Select';
 import renderer from 'react-test-renderer';
 
 vi.mock('../Editor', () => ({
